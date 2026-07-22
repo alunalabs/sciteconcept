@@ -1,0 +1,5 @@
+segment,epochs,best_epoch,best_val_loss
+Initial,1-4,3,3.017988
+Continuation 1,4-7,6,2.947050
+Continuation 2,7-50,44,2.752913
+Continuation 3,45-100,94,2.711081

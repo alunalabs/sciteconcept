@@ -1,0 +1,3 @@
+model,representation_score,deployment_score,representation_eligible,deployment_eligible,deployment_failed_gates
+sCITEconcept,0.6019880911159012,0.6174595397708158,True,True,
+base_scConcept,0.5953265449877689,0.6109666228244619,True,True,

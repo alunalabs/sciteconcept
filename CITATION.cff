@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "Please cite this repository and the upstream scConcept work."
+title: "sCITEconcept: CITE-seq fine-tuned scConcept"
+type: software
+authors:
+  - name: Aluna
+version: 0.1.0
+date-released: 2026-07-21
+repository-code: "https://github.com/alunalabs/sciteconcept"
+references:
+  - type: article
+    title: "scConcept: Contrastive pretraining for technology-agnostic single-cell representations beyond reconstruction"
+    authors:
+      - family-names: Bahrami
+        given-names: Mojtaba
+      - family-names: Theis
+        given-names: Fabian J.
+    doi: "10.1101/2025.10.14.682419"
+

@@ -1,0 +1,3 @@
+model,pairwise_auc,mrr,recall_at_1,recall_at_5
+sCITEconcept,0.7905,0.5591,0.3597,0.8419
+base_scConcept,0.7696,0.5324,0.331,0.8189

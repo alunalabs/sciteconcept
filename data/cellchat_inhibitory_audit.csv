@@ -1,0 +1,4 @@
+score,sciteconcept,base_scconcept,delta_points,ci_low_points,ci_high_points,p_value,n_contexts,interpretation
+balanced_pass_rate,0.5660,0.5351,3.09,,,,90,Overall stack-level family difference
+inhibitory_pass_rate,0.4747,0.4693,0.54,-7.86,8.78,0.901,42,Statistical tie
+coexpressive_pass_rate,0.6572,0.6008,5.64,0.67,10.56,,48,Source of the balanced lift

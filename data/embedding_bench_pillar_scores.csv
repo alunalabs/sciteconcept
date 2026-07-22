@@ -1,0 +1,11 @@
+model,pillar,pillar_score,pillar_weight
+base_scConcept,coverage,1.0,0.05
+sCITEconcept,coverage,1.0,0.05
+sCITEconcept,mechanism_pairing,0.7869722860458411,0.25
+base_scConcept,mechanism_pairing,0.755254497068338,0.25
+base_scConcept,native_panel_invariance,0.3301864731156785,0.15
+sCITEconcept,native_panel_invariance,0.303794501556944,0.15
+sCITEconcept,perturbation_observability,0.8768599575093848,0.25
+base_scConcept,perturbation_observability,0.8613865987498128,0.25
+sCITEconcept,state_transfer,0.4954467658095663,0.3
+base_scConcept,state_transfer,0.4818765438661792,0.3

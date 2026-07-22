@@ -1,0 +1,25 @@
+source,biological_context,assay_family
+GSE194122,bone marrow mononuclear cells,CITE-seq
+NYGC Hao PBMC,peripheral blood mononuclear cells,multimodal RNA and protein
+GSE245108,bone marrow,CITE-seq
+GSE100866,peripheral and cord blood mononuclear cells,CITE-seq
+GSE190570,peripheral blood mononuclear cells,CITE-seq
+GSE213282,peripheral blood with a 124-antibody panel,CITE-seq
+GSE185712,peripheral-blood T cells,CITE-seq
+GSE205320,peripheral blood,RNA and antibody
+GSE328023,bone-marrow B cells,CITE-seq
+GSE253719,immune-checkpoint-inhibitor colitis biopsy,CITE-seq
+GSE253721,immune-checkpoint-inhibitor colitis blood,CITE-seq
+GSE250490,ulcerative-colitis biopsy,CITE-seq
+GSE290006,inflammatory-bowel-disease vaccination,CITE-seq
+GSE155222,COVID-19 peripheral blood,CITE-seq
+GSE153358,B-cell acute lymphoblastic leukemia,CITE-seq
+Frangieh et al. 2021,cancer perturbation,Perturb-CITE-seq
+GSE153056,PD-L1 perturbation,ECCITE-seq
+GSE278572,T-cell perturbation,CITE-seq
+GSE158013,immune cells,TEA-seq
+GSE200417,immune cells,DOGMA-seq
+GSE305305,HLA-focused profiling,RNA and ADT
+GSE296669,macrophages,CITE-seq
+GSE213264,human tissue,spatial CITE-seq
+CosMx multiomic breast dataset,breast tissue,spatial RNA and protein

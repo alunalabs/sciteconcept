@@ -1,0 +1,55 @@
+{
+  "base_model": {
+    "embedding_dim": 1024,
+    "embedding_key": "cls_cell_emb",
+    "model_name": "corpus230M[human]-model170M",
+    "repo_id": "theislab/scConcept",
+    "revision": "10ed3ec8f35249247c33e1835e381a4c935ee26f"
+  },
+  "checkpoint": {
+    "filename": "sCITEconcept.safetensors",
+    "format": "safetensors",
+    "repository": "alunalabs/sCITEconcept"
+  },
+  "description": "scConcept RNA encoder fine-tuned with paired CITE-seq RNA and protein views.",
+  "inference": {
+    "max_tokens": 2048,
+    "rna_input_space": "raw_counts_rank_encoding",
+    "train_time_only_keys": [
+      "adt_encoder_state_dict"
+    ]
+  },
+  "training_only_weights": {
+    "filename": "training_adt_encoder.safetensors",
+    "format": "safetensors"
+  },
+  "limitations": [
+    "The selected run used about six percent of eligible paired cells.",
+    "The ADT encoder is training-time only.",
+    "The released checkpoint followed four training segments with fresh optimizer state at each continuation."
+  ],
+  "model_name": "sCITEconcept",
+  "selection": {
+    "epoch": 94,
+    "metric": "val_loss",
+    "validation": {
+      "adt_top1": 0.3126390171547731,
+      "adt_top5": 0.7621765325466792,
+      "rna_adt_cosine_mean": 0.37249485641966135,
+      "rna_top1": 0.5539274344841639,
+      "rna_top5": 0.9037048329909643
+    },
+    "value": 2.7110813041528066
+  },
+  "training_data_summary": {
+    "eligible_cells": 2190175,
+    "genes": 10763,
+    "protein_targets": 1674,
+    "selected_cells": 131072,
+    "source_studies": 24,
+    "total_cells": 2195521,
+    "training_cells": 102923,
+    "validation_cells": 28149
+  },
+  "version": "v1_epoch94"
+}

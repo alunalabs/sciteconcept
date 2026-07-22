@@ -1,0 +1,3 @@
+model,n_checkpoints,balanced_pass_rate,coexpression_pass_rate,inhibitory_pass_rate
+sCITEconcept,20,0.5636,0.6427,0.4845
+base_scConcept,20,0.533,0.5875,0.4786

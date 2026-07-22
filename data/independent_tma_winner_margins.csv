@@ -1,0 +1,4 @@
+metric,winner,runner_up,mean_delta,ci_low,ci_high,probability_delta_positive
+pairwise_auc,sCITEconcept,base_scConcept,0.0208,0.0111,0.0326,1.0
+reciprocal_rank,sCITEconcept,base_scConcept,0.0267,0.0145,0.0393,1.0
+recall_at_1,sCITEconcept,base_scConcept,0.0287,0.0129,0.0442,1.0
