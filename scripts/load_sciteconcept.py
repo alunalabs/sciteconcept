@@ -47,14 +47,30 @@ def load_sciteconcept(
     *,
     token: str | None = None,
     map_location: str | torch.device = "cpu",
+    repo_id: str = REPO_ID,
+    weights_path: str | Path | None = None,
+    metadata_path: str | Path | None = None,
 ) -> tuple[Any, dict[str, Any]]:
-    """Return a configured ``concept.scConcept`` object and release metadata."""
+    """Return a configured ``concept.scConcept`` object and release metadata.
+
+    By default the checkpoint and metadata are downloaded from ``repo_id``.
+    Supplying ``weights_path`` and ``metadata_path`` together uses a local
+    release bundle instead.
+    """
     from concept import scConcept
 
     cache_root = Path(cache_dir or Path.home() / ".cache" / "sciteconcept")
     model_dir = _base_model_dir(cache_root / "theislab_scConcept")
-    weights_path = hf_hub_download(REPO_ID, WEIGHTS_FILENAME, token=token)
-    metadata_path = hf_hub_download(REPO_ID, METADATA_FILENAME, token=token)
+    if (weights_path is None) != (metadata_path is None):
+        raise ValueError("weights_path and metadata_path must be supplied together")
+    if weights_path is None:
+        weights_path = hf_hub_download(repo_id, WEIGHTS_FILENAME, token=token)
+        metadata_path = hf_hub_download(repo_id, METADATA_FILENAME, token=token)
+    else:
+        weights_path = Path(weights_path)
+        metadata_path = Path(metadata_path)  # type: ignore[arg-type]
+        if not weights_path.is_file() or not metadata_path.is_file():
+            raise FileNotFoundError("local checkpoint bundle is incomplete")
 
     concept = scConcept(cache_dir=str(model_dir.parent))
     concept.load_config_and_model(
@@ -66,7 +82,7 @@ def load_sciteconcept(
     metadata = json.loads(Path(metadata_path).read_text(encoding="utf-8"))
     if metadata.get("model_class") != "ScConceptCiteSeqModelFineTune":
         raise RuntimeError(f"unexpected model_class: {metadata.get('model_class')!r}")
-    concept.model.load_state_dict(load_file(weights_path, device="cpu"), strict=True)
+    concept.model.load_state_dict(load_file(str(weights_path), device="cpu"), strict=True)
     concept.model.to(map_location)
     concept.model.eval()
     concept.model.stage = "val"
