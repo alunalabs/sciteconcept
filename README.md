@@ -20,6 +20,7 @@ the notebook with its outputs, so no local setup is needed to read it.
 | [`scripts/train_sciteconcept.py`](scripts/train_sciteconcept.py) | Portable local training program used by the documented recipe |
 | [`scripts/objective.py`](scripts/objective.py) | Compact, readable implementation of the three-view contrastive loss |
 | [`scripts/load_sciteconcept.py`](scripts/load_sciteconcept.py) | Loads the released checkpoint on top of the pinned base model |
+| [`scripts/encode_cells.py`](scripts/encode_cells.py) | Command-line encoder: raw counts in, 1024-dimensional cell embeddings out |
 | [`data/`](data) | Training history, configuration, model metadata, and benchmark result tables |
 | [`NOTICE.md`](NOTICE.md) | Upstream model and data attribution |
 | [`LICENSE`](LICENSE) | MIT license |
@@ -90,6 +91,24 @@ the pinned `theislab/scConcept` base artifact, and applies the fine-tuned RNA
 encoder weights. The returned model produces 1,024-dimensional cell
 embeddings. No protein encoder, sidecar, whitening, centering, or other
 post-processing is used at inference time.
+
+To encode your own cells, use `scripts/encode_cells.py`. It expects **raw,
+non-negative counts** and human gene symbols:
+
+```bash
+export HF_TOKEN=hf_...          # the checkpoint repository is private
+
+python scripts/encode_cells.py \
+    --input cells.h5ad \
+    --output embeddings.npy \
+    --write-metadata
+```
+
+It writes a `[cells, 1024]` float32 array in input row order. Per cell, the
+expressed genes are ranked by descending count and truncated to 2,048 tokens,
+which is the contract the model was trained under. Do not log-transform or
+CPM-normalise first: that changes the ranking and silently degrades the
+embedding. Nothing is applied on top of the L2-normalised CLS output.
 
 ## How to interpret the results
 
