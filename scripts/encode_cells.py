@@ -156,18 +156,7 @@ def build_parser() -> argparse.ArgumentParser:
                         help="Ranked genes kept per cell (release used 2048).")
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--cache-dir", type=Path, default=None, help="Where to cache downloaded weights.")
-    parser.add_argument(
-        "--repo-id",
-        default="alunalabs/sCITEconcept",
-        help="Hugging Face model repository used when local weights are not supplied.",
-    )
-    parser.add_argument("--weights", type=Path, help="Optional local sCITEconcept.safetensors.")
-    parser.add_argument("--metadata", type=Path, help="Metadata JSON required with --weights.")
-    parser.add_argument(
-        "--token",
-        default=None,
-        help="Optional Hugging Face token for authenticated mirrors or caches.",
-    )
+    parser.add_argument("--token", default=None, help="Hugging Face token, if the repo is private.")
     parser.add_argument("--write-metadata", action="store_true",
                         help="Also write <output>.json describing the run.")
     return parser
@@ -177,22 +166,14 @@ def main() -> None:
     args = build_parser().parse_args()
     if args.counts is not None and args.genes is None:
         raise SystemExit("--genes is required when using --counts")
-    if (args.weights is None) != (args.metadata is None):
-        raise SystemExit("--weights and --metadata must be supplied together")
 
     matrix, genes = load_counts(args)
     if matrix.min() < 0:
         raise SystemExit("counts are negative; this model expects raw, non-negative counts")
     print(f"Loaded {matrix.shape[0]:,} cells x {matrix.shape[1]:,} genes", flush=True)
 
-    concept, metadata = load_sciteconcept(
-        cache_dir=args.cache_dir,
-        token=args.token,
-        map_location=args.device,
-        repo_id=args.repo_id,
-        weights_path=args.weights,
-        metadata_path=args.metadata,
-    )
+    concept, metadata = load_sciteconcept(cache_dir=args.cache_dir, token=args.token,
+                                          map_location=args.device)
     token_ids, valid_gene = gene_token_ids(concept, genes)
     print(f"{int(valid_gene.sum()):,} of {len(genes):,} genes map into the scConcept vocabulary",
           flush=True)
